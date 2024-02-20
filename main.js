@@ -12,6 +12,18 @@ document.addEventListener("mousemove", function(e) {
 
 });
 
+document.addEventListener("ontouchmove", function(e) {
+
+    anime({
+        targets: "#target",
+        translateX: e.clientX - targetelem.clientWidth / 2,
+        translateY: e.clientY - targetelem.clientHeight / 2,
+        duration: 100,
+        easing: "easeOutCubic"
+    })
+
+});
+
 function disableScroll(event) {
   event.preventDefault();
 }
