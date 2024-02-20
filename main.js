@@ -12,12 +12,12 @@ document.addEventListener("mousemove", function(e) {
 
 });
 
-document.addEventListener("ontouchmove", function(e) {
+document.addEventListener("touchmove", function(e) {
 
     anime({
         targets: "#target",
-        translateX: e.clientX - targetelem.clientWidth / 2,
-        translateY: e.clientY - targetelem.clientHeight / 2,
+        translateX: e.touches[0].clientX - targetelem.clientWidth / 2,
+        translateY: e.touches[0].clientY - targetelem.clientHeight / 2,
         duration: 100,
         easing: "easeOutCubic"
     })
