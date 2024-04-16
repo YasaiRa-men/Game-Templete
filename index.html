@@ -14,18 +14,47 @@
             margin: 0px;
         }
 
+        main {
+            transform: translateX(50%);
+            width: 100%;
+            height: 100%;
+        }
+
+        #mainWindow {
+            background-color: gray;
+            height: 100%;
+            aspect-ratio: 3 / 5;
+            transform: translateX(-50%);
+        }
+
+        .smallball {
+            background-color: black;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            margin: 0px;
+            position: absolute;
+        }
+
         #target {
             background-color: brown;
             width: 30px;
             height: 30px;
             border-radius: 50%;
             margin: 0px;
+            position: absolute;
         }
     </style>
 </head>
 <body>
+    <main>
+    <div id="mainWindow">
 
-    <div id="target"></div>
+        <div id="target"></div>
+
+    </div>
+    </main>
+
 
     <script src="anime.min.js"></script>
     <script src="main.js"></script>
