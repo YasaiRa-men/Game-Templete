@@ -17,6 +17,8 @@ mainelem.style.width = Math.min(ScreenWidth, mainelem.offsetWidth) + "px";
 const X_Error = (ScreenWidth / 2) - (mainelem.offsetWidth / 2);
 console.log(X_Error);
 
+let Score = 0;
+
 // target と障害物を非表示にする
 targetelem.style.display = 'none';
 gameoverTitle.style.display = 'none';
@@ -59,6 +61,7 @@ endButton.addEventListener('click', function() {
 
     // ゲームを初期化する
     InitGame();
+    Score = 0;
 
     // イベントリスナーを無効にする
     document.removeEventListener("mousemove", mouseMoveHandler);
@@ -115,6 +118,10 @@ document.addEventListener('touchmove', disableScroll, { passive: false });
 setInterval(function() {
 
     GameEvent();
+    if (targetelem.style.display == "block") {
+        Score++;
+        document.querySelector("#Score").innerHTML = Score;
+    }
 
 }, 10);
 
