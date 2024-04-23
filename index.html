@@ -27,6 +27,20 @@
             transform: translateX(-50%);
         }
 
+        #gameTitle {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        #gameoverTitle {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
         .smallball {
             background-color: black;
             width: 35px;
@@ -34,6 +48,7 @@
             border-radius: 50%;
             margin: 0px;
             position: absolute;
+            z-index: 3;
         }
 
         #target {
@@ -44,19 +59,38 @@
             margin: 0px;
             position: absolute;
         }
+
+        #targetField {
+            background-color: rgb(113, 113, 113);
+            position: absolute;
+            width: 100%;
+            height: 100px;
+            bottom: 100px;
+            z-index: -1;
+        }
     </style>
 </head>
 <body>
     <main>
-    <div id="mainWindow">
+        <div id="mainWindow">
 
-        <div id="target"></div>
+            <div id="targetField"></div>
+            <div id="target"></div>
 
-    </div>
+            <div id="gameTitle">
+                <div>避けゲー</div>
+                <button id="startButton">スタート</button>
+            </div>
+
+            <div id="gameoverTitle">
+                <div>Game Over</div>
+                <button id="endButton">ホームへ</button>
+            </div>
+        </div>
     </main>
-
 
     <script src="anime.min.js"></script>
     <script src="main.js"></script>
 </body>
+</html>
 </html>
