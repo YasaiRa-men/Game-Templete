@@ -44,7 +44,7 @@ startButton.addEventListener('click', function() {
     // 障害物生成を開始する
 
     SmallBall_ms = 3000;
-    SmallBall_Interval = setInterval(SmallBall, SmallBall_ms);
+    SmallBall_Interval = setTimeout(SmallBall, SmallBall_ms);
 
     // イベントリスナーを有効にする
     document.addEventListener("mousemove", mouseMoveHandler);
@@ -94,8 +94,6 @@ function touchMoveHandler(e) {
     let AfterY = Math.max(targetField.offsetTop, e.touches[0].clientY - targetelem.clientHeight / 2);
     AfterY = Math.min(mainelem.clientHeight - targetField.clientHeight - targetelem.clientWidth, AfterY);
 
-    console.log(AfterY);
-
     anime({
         targets: "#target",
         translateX: AfterX,
@@ -113,18 +111,12 @@ function disableScroll(event) {
 // イベントと関数を紐付け
 document.addEventListener('touchmove', disableScroll, { passive: false });
 
-//座標取得
+// 当たり判定を検知
 setInterval(function() {
 
-    /*
-    console.log(
-        "X : " + new WebKitCSSMatrix(targetelem.style.transform).m41,
-        ", Y : " + new WebKitCSSMatrix(targetelem.style.transform).m42
-    );
-    */
-
     GameEvent();
-}, 100);
+
+}, 10);
 
 //時間処理
 function GameEvent() {
@@ -143,11 +135,17 @@ function GameEvent() {
             targetelem.style.display = 'none';
             gameoverTitle.style.display = 'block';
 
-            clearInterval(SmallBall_Interval);
+            clearTimeout(SmallBall_Interval); // タイマーをキャンセル
+
             for (let i = 0; i < smallballnum; i++) {
 
-                anime.remove("#s" + i);
-                document.querySelector("#s" + i).remove();
+                try {
+                    anime.remove("#s" + i);
+                    document.querySelector("#s" + i).remove();
+                } catch {
+                    continue;
+                }
+                
 
             }
             smallballnum = 0;
@@ -173,8 +171,8 @@ function SmallBall() {
         targets: "#s" + smallballnum,
         translateX: [ranX, ranX],
         translateY: [-100, ScreenHeight + 100],
-        duration: 10000,
-        easing: "linear",
+        duration: 4000,
+        easing: "easeInCubic",
         complete: function() {
             document.querySelector("#s" + snum).remove();
         }
@@ -184,7 +182,9 @@ function SmallBall() {
 
     smallballnum++;
 
-    SmallBall_ms =- 10;
-    SmallBall_ms = Math.max(SmallBall_ms, 0);
+    SmallBall_ms -= 100;
+    SmallBall_ms = Math.max(SmallBall_ms, 200);
+
+    SmallBall_Interval =setTimeout(SmallBall, SmallBall_ms);
 
 }
