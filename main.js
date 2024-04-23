@@ -43,7 +43,7 @@ startButton.addEventListener('click', function() {
 
     // 障害物生成を開始する
 
-    SmallBall_ms = 3000;
+    SmallBall_ms = 1500;
     SmallBall_Interval = setTimeout(SmallBall, SmallBall_ms);
 
     // イベントリスナーを有効にする
@@ -182,7 +182,7 @@ function SmallBall() {
 
     smallballnum++;
 
-    SmallBall_ms -= 100;
+    SmallBall_ms -= 50;
     SmallBall_ms = Math.max(SmallBall_ms, 200);
 
     SmallBall_Interval =setTimeout(SmallBall, SmallBall_ms);
